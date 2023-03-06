@@ -1,5 +1,3 @@
-
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 
@@ -23,6 +21,11 @@ public class JavalinSingleton {
         app.post("/echo", ctx -> {
             
             //implement logic here
+            String jsonString = ctx.body();
+
+            Song echo = om.readValue(jsonString, Song.class);
+
+            ctx.json(echo);
                 
         });
 
@@ -36,6 +39,15 @@ public class JavalinSingleton {
         app.post("/changeartisttobeatles", ctx -> {
 
             //implement logic here
+
+            String jsonString=ctx.body();
+
+            Song changeartisttobeatles = om.readValue(jsonString,Song.class);
+
+            changeartisttobeatles.setArtistName("Beatles");
+
+            ctx.json(changeartisttobeatles);
+
                
         });
 
@@ -44,3 +56,4 @@ public class JavalinSingleton {
     }
     
 }
+
